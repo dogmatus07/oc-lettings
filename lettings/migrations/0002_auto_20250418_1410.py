@@ -17,15 +17,22 @@ def copy_lettings_data(app, schema_editor):
     NewLetting = app.get_model('lettings', 'Letting')
 
     for old_address in OldAddress.objects.all():
-        new_address = NewAddress(
-            number=old_address.number,
-            street=old_address.street,
-            city=old_address.city,
-            state=old_address.state,
-            zip_code=old_address.zip_code,
-            country=old_address.country
+       NewAddress.objects.create(
+           id=old_address.id,
+           number=old_address.number,
+           street=old_address.street,
+           city=old_address.city,
+           state=old_address.state,
+           zip_code=old_address.zip_code,
+           country_iso_code=old_address.country_iso_code,
+       )
+
+    for old_letting in OldLetting.objects.all():
+        NewLetting.objects.create(
+            id=old_letting.id,
+            title=old_letting.title,
+            address_id=old_letting.address_id,
         )
-        new_address.save()
 
 
 class Migration(migrations.Migration):
@@ -35,4 +42,5 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
+        migrations.RunPython(copy_lettings_data),
     ]
