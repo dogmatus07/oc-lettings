@@ -6,7 +6,7 @@ def index(request):
     """
     View function for the profiles index page.
     :param request:
-    :return:
+    :return: profiles/index.html
     """
     profiles_list = Profile.objects.all()
     context = {'profiles_list': profiles_list}
@@ -17,8 +17,8 @@ def profile(request, username):
     """
     View function for a specific profile.
     :param request:
-    :param username:
-    :return:
+    :param username: The username of the profile to display.
+    :return: profiles/profile.html
     """
     profile = get_object_or_404(Profile, user__username=username)
     context = {

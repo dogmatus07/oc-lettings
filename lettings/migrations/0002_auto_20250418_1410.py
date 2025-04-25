@@ -36,6 +36,9 @@ def copy_lettings_data(app, schema_editor):
 
 
 class Migration(migrations.Migration):
+    """
+    Migration to copy lettings data from the old table to the new table.
+    """
 
     dependencies = [
         ('lettings', '0001_initial'),
