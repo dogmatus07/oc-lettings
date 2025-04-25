@@ -1,6 +1,7 @@
 from django.core.validators import MaxValueValidator, MinLengthValidator
 from django.db import models
 
+
 class Address(models.Model):
     number = models.PositiveIntegerField(validators=[MaxValueValidator(9999)])
     street = models.CharField(max_length=64)
