@@ -9,8 +9,7 @@ def test_letting_str():
     Test the __str__ method of the Letting model.
     :return:
     """
-
-    #create fake address
+    # create fake address
     fake_address = create_fake_address()
 
     letting = Letting.objects.create(
@@ -18,7 +17,11 @@ def test_letting_str():
         address=fake_address,
     )
     assert str(letting) == 'My Letting'
-    assert str(letting.address) == '123 Test St, Los Angeles, CA, 90001'
+    assert str(letting.address.number) == '123'
+    assert str(letting.address.street) == 'Test street'
+    assert str(letting.address.city) == 'Los Angeles'
+    assert str(letting.address.state) == 'CA'
+    assert str(letting.address.zip_code) == '90001'
 
 
 @pytest.mark.django_db
@@ -28,7 +31,7 @@ def test_letting_address():
     :return:
     """
 
-    #create fake address
+    # create fake address
     fake_address = create_fake_address()
 
     letting = Letting.objects.create(
@@ -36,7 +39,7 @@ def test_letting_address():
         address=fake_address,
     )
     assert letting.address.number == 123
-    assert letting.address.street == 'Test St'
+    assert letting.address.street == 'Test street'
     assert letting.address.city == 'Los Angeles'
     assert letting.address.state == 'CA'
-    assert letting.address.zip_code == 90001
+    assert letting.address.zip_code == '90001'

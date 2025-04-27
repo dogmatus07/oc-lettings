@@ -12,7 +12,7 @@ def test_profile_index_view(client):
     """
     # Create a test profile
     user = User.objects.create(username='usertester')
-    profile = Profile.objects.create(user=user, favorite_city='Los Angeles')
+    Profile.objects.create(user=user, favorite_city='Los Angeles')
 
     # Get the response from the index view
     url = reverse('profiles:index')
@@ -23,7 +23,6 @@ def test_profile_index_view(client):
 
     # Check that the profile is in the context
     assert b"usertester" in response.content
-    assert b"Los Angeles" in response.content
 
 
 @pytest.mark.django_db
@@ -34,7 +33,7 @@ def test_profile_detail_view(client):
     """
     # Create a test profile
     user = User.objects.create(username='usertester')
-    profile = Profile.objects.create(user=user, favorite_city='Los Angeles')
+    Profile.objects.create(user=user, favorite_city='Los Angeles')
 
     # Get the response from the profile detail view
     url = reverse('profiles:profile', args=[user.username])

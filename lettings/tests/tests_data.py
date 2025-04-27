@@ -1,6 +1,7 @@
 import pytest
 from lettings.models import Address
 
+
 @pytest.mark.django_db
 def create_fake_address():
     """
