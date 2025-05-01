@@ -10,9 +10,13 @@ def copy_lettings_data(app, schema_editor):
     :param schema_editor:
     :return:
     """
+    try:
+        OldAddress = app.get_model('oc_lettings_site', 'Address')
+        OldLetting = app.get_model('oc_lettings_site', 'Letting')
+    except LookupError:
+        # old models do not exist during tests
+        return
 
-    OldAddress = app.get_model('oc_lettings_site', 'Address')
-    OldLetting = app.get_model('oc_lettings_site', 'Letting')
     NewAddress = app.get_model('lettings', 'Address')
     NewLetting = app.get_model('lettings', 'Letting')
 
