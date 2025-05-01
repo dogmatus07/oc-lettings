@@ -27,3 +27,12 @@ def custom_500_view(request):
     :return: rendered 500 error page
     """
     return render(request, '500.html', status=500)
+
+
+def trigger_500_error(request):
+    """
+    View to trigger a 500 error
+    :param request: http request
+    :return: None
+    """
+    raise Exception("This is a test exception to trigger a 500 error")
