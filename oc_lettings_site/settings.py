@@ -1,8 +1,11 @@
 import os
 import sentry_sdk
+from dotenv import load_dotenv
 from sentry_sdk.integrations.django import DjangoIntegration
 from pathlib import Path
 
+# Load environment variables from .env file
+load_dotenv()
 
 # Sentry configuration
 sentry_sdk.init(

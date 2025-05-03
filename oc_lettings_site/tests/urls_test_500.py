@@ -1,4 +1,4 @@
-from django.urls import path, include
+from django.urls import path
 from django.http import HttpResponse
 
 
@@ -18,6 +18,7 @@ def fake_index_view(request):
     :return:
     """
     return HttpResponse("Fake Index")
+
 
 urlpatterns = [
     path('', fake_index_view, name='index'),
