@@ -6,6 +6,7 @@ import sentry_sdk
 
 logger = logging.getLogger(__name__)
 
+
 def index(request):
     """
     View function for the index page.
@@ -33,6 +34,7 @@ def custom_404_view(request, exception):
         logger.error("An error occurred while rendering the 404 page: %s", e)
         sentry_sdk.capture_exception(e)
         return HttpResponse("An error occurred while rendering the 404 page.", status=500)
+
 
 def custom_500_view(request):
     """
