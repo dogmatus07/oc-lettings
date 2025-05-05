@@ -127,6 +127,7 @@ def test_custom_500_view(client):
     # Check that the response is 500 Internal Server Error
     assert response.status_code == 500
 
+
 @pytest.mark.django_db
 def test_simulate_error_view(client):
     """
@@ -134,8 +135,8 @@ def test_simulate_error_view(client):
     :param client: The test client.
     """
 
-    with mock.patch('oc_lettings_site.views.logger') as mock_logger, \
-        mock.patch('oc_lettings_site.views.sentry_sdk.capture_exception') as mock_sentry:
+    with (mock.patch('oc_lettings_site.views.logger') as mock_logger,
+          mock.patch('oc_lettings_site.views.sentry_sdk.capture_exception') as mock_sentry):
 
         # Simulate a server error
         url = reverse('simulate-error')
