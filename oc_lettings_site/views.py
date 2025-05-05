@@ -59,7 +59,7 @@ def simulate_error_view(request):
 
     try:
         result = 1/0
-        return HttpResponse(f"Result: {result}")
+        return HttpResponse(f'Result : {result}')
     except Exception as e:
         logger.error("An error occurred: %s", e)
         sentry_sdk.capture_exception(e)
