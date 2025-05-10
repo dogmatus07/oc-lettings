@@ -1,12 +1,15 @@
 import os
 import sentry_sdk
+from dotenv import load_dotenv
 from sentry_sdk.integrations.django import DjangoIntegration
 from pathlib import Path
 
+# Load environment variables from .env file
+load_dotenv()
 
 # Sentry configuration
 sentry_sdk.init(
-    dsn="https://8164c251ef255b904cce2eb89b984f9e@o4509044868055040.ingest.de.sentry.io/4509247947997264",
+    dsn=os.getenv("SENTRY_DSN"),
     integrations=[DjangoIntegration()],
     traces_sample_rate=1.0,
     send_default_pii=True

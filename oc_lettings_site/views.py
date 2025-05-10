@@ -1,4 +1,10 @@
+import logging
+from django.http import HttpResponse
 from django.shortcuts import render
+import sentry_sdk
+
+
+logger = logging.getLogger(__name__)
 
 
 def index(request):
@@ -7,7 +13,12 @@ def index(request):
     :param request:
     :return: index.html
     """
-    return render(request, 'index.html')
+    try:
+        return render(request, 'index.html')
+    except Exception as e:
+        logger.error("An error occurred while rendering the index page: %s", e)
+        sentry_sdk.capture_exception(e)
+        return HttpResponse("An error occurred while rendering the index page.", status=500)
 
 
 def custom_404_view(request, exception):
@@ -17,7 +28,12 @@ def custom_404_view(request, exception):
     :param exception: exception raised
     :return:rendered 404 error page
     """
-    return render(request, '404.html', status=404)
+    try:
+        return render(request, '404.html', status=404)
+    except Exception as e:
+        logger.error("An error occurred while rendering the 404 page: %s", e)
+        sentry_sdk.capture_exception(e)
+        return HttpResponse("An error occurred while rendering the 404 page.", status=500)
 
 
 def custom_500_view(request):
@@ -26,22 +42,25 @@ def custom_500_view(request):
     :param request: http request
     :return: rendered 500 error page
     """
-    return render(request, '500.html', status=500)
+    try:
+        return render(request, '500.html', status=500)
+    except Exception as e:
+        logger.error("An error occurred while rendering the 500 page: %s", e)
+        sentry_sdk.capture_exception(e)
+        return HttpResponse("An error occurred while rendering the 500 page.", status=500)
 
 
-def trigger_500_error(request):
+def simulate_error_view(request):
     """
-    View to trigger a 500 error
-    :param request: http request
-    :return: None
+    Simulate a server error
+    :param request:
+    :return:
     """
-    raise Exception("This is a test exception to trigger a 500 error")
 
-
-def trigger_error(request):
-    """
-    View to trigger an error for testing sentry
-    :param request: http request
-    :return: None
-    """
-    division_by_zero = 1 / 0
+    try:
+        result = 1/0
+        return HttpResponse(f'Result : {result}')
+    except Exception as e:
+        logger.error("An error occurred: %s", e)
+        sentry_sdk.capture_exception(e)
+        return HttpResponse("An error occurred, and it has been logged.", status=500)
