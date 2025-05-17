@@ -1,6 +1,6 @@
 # Base image
 
-FROM python:3.11-slim
+FROM python:3.9.22-slim
 
 # Set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
@@ -11,12 +11,13 @@ WORKDIR /app
 
 # Install system dependencies
 RUN apt-get update && \
-    apt-get install -y build-essential libpq-dev
+    apt-get install -y build-essential libpq-dev && \
+    apt-get clean
 
 # Install Python dependencies
 COPY requirements.txt .
-RUN pip install --upgrade && \
-    pip install -r requirements.txt
+RUN pip install --no-cache-dir --upgrade pip setuptools && \
+    pip install --no-cache-dir -r requirements.txt
 
 # Copy the project files into the container
 COPY . .
