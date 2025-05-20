@@ -3,8 +3,8 @@
 FROM python:3.9.22-slim
 
 # Set environment variables
-ENV PYTHONDONTWRITEBYTECODE 1
-ENV PYTHONUNBUFFERED 1
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
 
 # Set the working directory
 WORKDIR /app
@@ -16,14 +16,19 @@ RUN apt-get update && \
 
 # Install Python dependencies
 COPY requirements.txt .
-RUN pip install --no-cache-dir --upgrade pip setuptools && \
-    pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the project files into the container
 COPY . .
 
 # Collect static files
 RUN python manage.py collectstatic --noinput
+
+# Make migrations and migrate the database
+RUN python manage.py migrate --noinput
+
+# Seed the database from fixtures or seed.py
+RUN python load_fixtures.py
 
 # Expose port
 EXPOSE 8000

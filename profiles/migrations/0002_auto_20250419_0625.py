@@ -10,15 +10,19 @@ def copy_profiles_data(apps, schema_editor):
     :param schema_editor:
     :return:
     """
-    OldProfile = apps.get_model('oc_lettings_site', 'Profile')
-    NewProfile = apps.get_model('profiles', 'Profile')
+    try:
+        OldProfile = apps.get_model('oc_lettings_site', 'Profile')
+        NewProfile = apps.get_model('profiles', 'Profile')
 
-    for old_profile in OldProfile.objects.all():
-        NewProfile.objects.create(
-            id=old_profile.id,
-            user_id=old_profile.user_id,
-            favorite_city=old_profile.favorite_city,
-        )
+        for old_profile in OldProfile.objects.all():
+            NewProfile.objects.create(
+                id=old_profile.id,
+                user_id=old_profile.user_id,
+                favorite_city=old_profile.favorite_city,
+            )
+    except LookupError:
+        # old models do not exist
+        print("Oc_lettings_site.Profile doesn't exist anymore.")
 
 
 class Migration(migrations.Migration):
