@@ -43,6 +43,7 @@ def load_fixtures():
         except Exception as e:
             print(f"Error loading fixture '{fixture_name}': {e}")
 
+
 if __name__ == "__main__":
     print("Loading fixtures...")
     load_fixtures()
