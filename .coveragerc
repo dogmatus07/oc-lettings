@@ -10,6 +10,9 @@ omit =
     */asgi.py
     */apps.py
     */admin.py
+    */fixtures.py
+    load_fixtures.py
+    */seed.py
 
 [report]
 exclude_lines =
