@@ -1,4 +1,5 @@
-import os, sys
+import os
+import sys
 import sentry_sdk
 from dotenv import load_dotenv
 from sentry_sdk.integrations.django import DjangoIntegration
