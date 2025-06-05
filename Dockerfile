@@ -12,7 +12,8 @@ WORKDIR /app
 # Install system dependencies
 RUN apt-get update && \
     apt-get install -y build-essential libpq-dev && \
-    apt-get clean
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
 # Install Python dependencies
 COPY requirements.txt .
@@ -30,8 +31,13 @@ RUN python manage.py migrate --noinput
 # Seed the database from fixtures or seed.py
 RUN python load_fixtures.py
 
+# Create a non root user for security
+RUN useradd --create-home --shell /bin/bash app && \
+    chown -R app:app /app
+USER app
+
 # Expose port
 EXPOSE 8000
 
 # Start the application
-CMD ["gunicorn", "oc_lettings_site.wsgi:application", "--bind", "0.0.0:8000"]
+CMD ["gunicorn", "oc_lettings_site.wsgi:application", "--bind", "0.0.0.0:8000"]
