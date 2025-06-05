@@ -2,9 +2,9 @@
 name: CI/CD Pipeline
 on:
   push:
-    branches: [main, master]
+    branches: [main, master, deploy]
     pull_request:
-      branches: [main, master]
+      branches: [main, master, deploy]
 
 jobs:
   test:
@@ -25,9 +25,9 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Run Tests
+      - name: Run Tests and generate coverage report
         run: |
-          python -m pytest
-          
-          
+          pytest --cov=.
 
+      - name: Upload Coverage Report
+        uses: codecov/codecov-action@v3
