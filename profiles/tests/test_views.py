@@ -31,7 +31,7 @@ def test_profile_detail_view(client):
     Test the profile detail view.
     :param client: The test client.
     """
-    # Create a test profile
+    # Create a test profile for the detail view
     user = User.objects.create(username='usertester')
     Profile.objects.create(user=user, favorite_city='Los Angeles')
 
