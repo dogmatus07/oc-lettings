@@ -28,9 +28,6 @@ RUN python manage.py collectstatic --noinput
 # Make migrations and migrate the database
 RUN python manage.py migrate --noinput
 
-# Seed the database from fixtures or seed.py
-RUN python load_fixtures.py
-
 # Create a non root user for security
 RUN useradd --create-home --shell /bin/bash app && \
     chown -R app:app /app
