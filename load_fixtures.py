@@ -6,6 +6,7 @@ import os
 import django
 import glob
 from django.core.management import call_command
+from django.contrib.auth.models import User
 
 
 # Set up Django environment
@@ -15,9 +16,14 @@ django.setup()
 
 def load_fixtures():
     """
-    Load fixtures from JSON files into the database.
+    Load fixtures from JSON files into the database. Only if DB is empty.
     :return: None
     """
+    # Check if the database is empty
+    if User.objects.exists():
+        print("Database is not empty. Skipping fixture loading.")
+        return
+
     # Get the path to the fixtures directory
     fixtures_dir = os.path.join(os.path.dirname(__file__), 'fixtures')
 
