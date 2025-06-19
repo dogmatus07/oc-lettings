@@ -1,0 +1,34 @@
+Presentation
+=================
+
+Goal of the project
+------------------
+
+OC Lettings is a Django-based application designed to allow Real Estate Agency to publish their **Holiday Homes** and manage profiles and Users.
+
+Fonctionalities
+------------------
+* **Listings (Lettings)** : show the list of lettings with detailled informations.
+* **Profiles** : Profile page (user, favorite address)
+* **Custom Error Pages** : 404 & 500.
+* **Logs + Sentry** : Log all the errors and send them to Sentry.
+* **CI/CD** : Continuous Integration and Continuous Deployment (tests, coverage, build and push Docker and deployment on Render).
+* **Documentation** : Automated documentation with Read The Docs.
+
+Architecture
+------------------
+oc_lettings/ <- Django project root
+    ├── lettings/ <- Django app for managing lettings
+    ├── profiles/ <- Django app for managing user profiles
+    └── docs/ <- Documentation files
+
+Technologies
+------------------
+* **Python 3.9** : Programming language used for the project.
+* **Django 3.0** : Web framework used for building the application.
+* **SQLite** : Database used for development and testing.
+* **Gunicorn & Whitenoise** : WSGI HTTP server and middleware for serving static files.
+* **Docker & Github Actions** : Containerization and CI/CD pipeline.
+* **Sentry** : Error tracking and monitoring service.
+* **Read The Docs** : Documentation hosting service.
+* **Render** : Cloud platform for deploying the application.
