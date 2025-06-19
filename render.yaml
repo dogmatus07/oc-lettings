@@ -7,12 +7,13 @@ services:
     repo: https://github.com/dogmatus07/oc-lettings
     branch: main
     dockerfilePath: Dockerfile
+    startCommand: gunicorn oc_lettings_site.wsgi:application --bind 0.0.0.0:8000
     envVars:
       - key: SECRET_KEY
-        value:
+        sync: false
       - key: DEBUG
         value: 'False'
       - key: ALLOWED_HOSTS
         value: oc-lettings.onrender.com
       - key: SENTRY_DSN
-        value:
+        sync: false
