@@ -28,9 +28,8 @@ RUN python manage.py collectstatic --noinput
 # Make migrations and migrate the database
 RUN python manage.py migrate --noinput
 
-# Copy entrypoint script and make it executable
-COPY entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
+# Load fixtures
+RUN python load_fixtures.py || echo "fixtures skipped or not found"
 
 # Create a non root user for security
 RUN useradd --create-home --shell /bin/bash app && \
@@ -41,4 +40,4 @@ USER app
 EXPOSE 8000
 
 # Start the application
-ENTRYPOINT ["/entrypoint.sh"]
+CMD ["gunicorn", "oc_lettings_site.wsgi:application", "--bind", "0.0.0.0:8000"]
