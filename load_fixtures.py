@@ -32,7 +32,7 @@ def load_fixtures():
         return
 
     # Find all JSON files in the fixtures directory
-    fixture_files = glob.glob(os.path.join(fixtures_dir, '*.json'))
+    fixture_files = sorted(glob.glob(os.path.join(fixtures_dir, '*.json')))
     if not fixture_files:
         print("No JSON fixture files found.")
         from seed import seed_data
