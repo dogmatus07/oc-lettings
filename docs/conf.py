@@ -9,7 +9,7 @@ import os
 import sys
 
 # Root to the project directory
-sys.path.insert(0, os.path.abspath('../..'))
+sys.path.insert(0, os.path.abspath('..'))
 os.environ['DJANGO_SETTINGS_MODULE'] = 'oc_lettings_site.settings'
 
 # Import Django and setup the environment
