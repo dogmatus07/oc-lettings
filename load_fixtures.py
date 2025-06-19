@@ -6,13 +6,16 @@ import os
 import django
 import glob
 from django.core.management import call_command
-from django.contrib.auth.models import User
 
 
 # Set up Django environment
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "oc_lettings_site.settings")
 django.setup()
 
+from django.contrib.auth.models import User
+
+# Get the path to the fixtures directory
+fixtures_dir = os.path.join(os.path.dirname(__file__), 'fixtures')
 
 def load_fixtures():
     """
@@ -23,9 +26,6 @@ def load_fixtures():
     if User.objects.exists():
         print("Database is not empty. Skipping fixture loading.")
         return
-
-    # Get the path to the fixtures directory
-    fixtures_dir = os.path.join(os.path.dirname(__file__), 'fixtures')
 
     if not os.path.exists(fixtures_dir):
         print(f"Fixtures directory '{fixtures_dir}' does not exist.")
