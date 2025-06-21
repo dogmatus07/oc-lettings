@@ -9,8 +9,15 @@ logger = logging.getLogger(__name__)
 def index(request):
     """
     View function for the letting index page.
-    :param request:
-    :return: lettings/index.html
+
+    Args:
+        request: The HTTP request object.
+
+    Returns:
+        HttpResponse: Rendered HTML page (lettings/index.html)
+
+    Raises:
+        Exception: If an error occurs while retrieving lettings or rendering the page.
     """
     try:
         lettings_list = Letting.objects.all()
@@ -25,9 +32,16 @@ def index(request):
 def letting(request, letting_id):
     """
     View function for a specific letting.
-    :param request:
-    :param letting_id: The ID of the letting to display.
-    :return: lettings/letting.html
+
+    Args:
+        request: The HTTP request object.
+        letting_id: The ID of the letting to retrieve.
+
+    Returns:
+         HttpResponse: Rendered HTML page (lettings/letting.html)
+
+    Raises:
+        Exception: If an error occurs while retrieving the letting or rendering the page.
     """
     try:
         letting = get_object_or_404(Letting, id=letting_id)

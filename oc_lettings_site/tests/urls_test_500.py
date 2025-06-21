@@ -5,8 +5,15 @@ from django.http import HttpResponse
 def error_view(request):
     """
     Simulate a server error
-    :param request:
-    :return:
+
+    Args:
+        request: The HTTP request object.
+
+    Returns:
+        None
+
+    Raises:
+        Exception: Always raises an exception to simulate a 500 server error.
     """
     raise Exception("Forced exception for testing 500 server error")
 
@@ -14,8 +21,12 @@ def error_view(request):
 def fake_index_view(request):
     """
     Fake index view
-    :param request:
-    :return:
+
+    Args:
+        request: The HTTP request object.
+
+    Returns:
+        HttpResponse: A simple HTTP response indicating the index page.
     """
     return HttpResponse("Fake Index")
 

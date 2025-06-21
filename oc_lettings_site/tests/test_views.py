@@ -11,7 +11,12 @@ from oc_lettings_site.views import custom_404_view, custom_500_view
 def test_index_view(client):
     """
     Test the main index view.
-    :param client: The test client.
+
+    Args:
+        client: The test client to simulate requests.
+
+    Returns:
+        None
     """
     # Get the response from the index view
     url = reverse('index')
@@ -33,8 +38,13 @@ def test_index_view(client):
 def test_index_view_exception(mock_render, client):
     """
     Force Exception on index view
-    :param mock_render: mock render
-    :param client: test client
+
+    Args:
+        mock_render: mock render
+        client: test client
+
+    Returns:
+        None
     """
     mock_render.side_effect = Exception("Render failed")
     response = client.get(reverse('index'))
@@ -45,6 +55,12 @@ def test_index_view_exception(mock_render, client):
 def test_custom_404_view_render_success():
     """
     Render success for custom 404 view
+
+    Args:
+        None
+
+    Returns:
+        None
     """
     factory = RequestFactory()
     request = factory.get('not-found-page')
@@ -59,6 +75,12 @@ def test_custom_404_view_render_success():
 def test_custom_404_view_render_exception():
     """
     Render Exception for custom 404 view
+
+    Args:
+        None
+
+    Returns:
+        None
     """
     factory = RequestFactory()
     request = factory.get('not-found-page')
@@ -73,7 +95,12 @@ def test_custom_404_view_render_exception():
 def test_custom_500_view_render_success():
     """
     Test render success for custom 500 view
-    :return:
+
+    Args:
+        None
+
+    Returns:
+        None
     """
     factory = RequestFactory()
     request = factory.get('/server-error/')
@@ -88,6 +115,12 @@ def test_custom_500_view_render_success():
 def test_custom_500_view_render_exception():
     """
     Test render exception for custom 500 view
+
+    Args:
+        None
+
+    Returns:
+        None
     """
     factory = RequestFactory()
     request = factory.get('/server-error/')
@@ -102,7 +135,12 @@ def test_custom_500_view_render_exception():
 def test_custom_404_view(client):
     """
     Test the custom 404 error view.
-    :param client: The test client.
+
+    Args:
+        client: The test client to simulate requests.
+
+    Returns:
+        None
     """
     # Get the response from a non-existent page
     url = reverse('index') + 'not-a-page/'
@@ -118,7 +156,12 @@ def test_custom_404_view(client):
 def test_custom_500_view(client):
     """
     Test the custom 500 error view.
-    :param client: The test client.
+
+    Args:
+        client: The test client to simulate requests.
+
+    Returns:
+        None
     """
     # Simulate a server error
     url = reverse('simulate-error')
@@ -132,7 +175,12 @@ def test_custom_500_view(client):
 def test_simulate_error_view(client):
     """
     Test the simulate error view.
-    :param client: The test client.
+
+    Args:
+        client: The test client to simulate requests.
+
+    Returns:
+        None
     """
 
     with (mock.patch('oc_lettings_site.views.logger') as mock_logger,

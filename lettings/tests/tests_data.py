@@ -6,7 +6,12 @@ from lettings.models import Address
 def create_fake_address():
     """
     Create a fake address for testing purposes.
-    :return:
+
+    Args:
+        None
+
+    Returns:
+        Address: A fake Address object.
     """
     fake_address = Address.objects.create(
         id=1,

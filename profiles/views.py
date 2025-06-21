@@ -9,8 +9,15 @@ logger = logging.getLogger(__name__)
 def index(request):
     """
     View function for the profiles index page.
-    :param request:
-    :return: profiles/index.html
+
+    Args:
+        request: The HTTP request object.
+
+    Returns:
+        Rendered HTML page (profiles/index.html) with a list of profiles.
+
+    Raises:
+        Exception: If an error occurs while retrieving profiles or rendering the page.
     """
     try:
         profiles_list = Profile.objects.all()
@@ -25,9 +32,16 @@ def index(request):
 def profile(request, username):
     """
     View function for a specific profile.
-    :param request:
-    :param username: The username of the profile to display.
-    :return: profiles/profile.html
+
+    Args:
+        request: The HTTP request object.
+        username: The username of the profile to display.
+
+    Returns:
+        Rendered HTML page (profiles/profile.html) with the profile details.
+
+    Raises:
+        Exception: If an error occurs while retrieving the profile or rendering the page.
     """
     try:
         profile = get_object_or_404(Profile, user__username=username)

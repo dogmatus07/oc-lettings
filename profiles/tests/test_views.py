@@ -8,7 +8,12 @@ from profiles.models import Profile
 def test_profile_index_view(client):
     """
     Test the profile index view.
-    :param client: The test client.
+
+    Args:
+        client: The test client.
+
+    Returns:
+        None
     """
     # Create a test profile
     user = User.objects.create(username='usertester')
@@ -29,7 +34,12 @@ def test_profile_index_view(client):
 def test_profile_detail_view(client):
     """
     Test the profile detail view.
-    :param client: The test client.
+
+    Args:
+        client: The test client.
+
+    Returns:
+        None
     """
     # Create a test profile for the detail view
     user = User.objects.create(username='usertester')

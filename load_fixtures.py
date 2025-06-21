@@ -12,10 +12,11 @@ from django.core.management import call_command
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "oc_lettings_site.settings")
 django.setup()
 
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User  # noqa: E402
 
 # Get the path to the fixtures directory
 fixtures_dir = os.path.join(os.path.dirname(__file__), 'fixtures')
+
 
 def load_fixtures():
     """

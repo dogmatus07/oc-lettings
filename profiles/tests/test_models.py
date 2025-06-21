@@ -7,7 +7,12 @@ from profiles.models import Profile
 def test_profile_str():
     """
     Test the __str__ method of the Profile model.
-    :return:
+
+    Args:
+        None
+
+    Returns:
+        None
     """
     user = User.objects.create(username='usertester')
     profile = Profile.objects.create(user=user, favorite_city='Los Angeles')

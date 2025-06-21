@@ -7,7 +7,12 @@ from django.views import defaults
 def test_custom_404_view(client):
     """
     Test the custom 404 error page
-    :param client: test client
+
+    Args:
+        client: The test client to simulate requests.
+
+    Returns:
+        None
     """
     response = client.get('not-a-page/')
     assert response.status_code == 404
@@ -38,6 +43,16 @@ def test_custom_500_view():
     """
     Test the custom 500 error page, simulate an exception
     Call the default Django 500 error view
+
+    Args:
+        None
+
+    Returns:
+        None
+
+    Raises:
+        AssertionError: If the response status code is not 500 or \n
+        if the content does not contain 'Server Error'.
     """
 
     factory = RequestFactory()

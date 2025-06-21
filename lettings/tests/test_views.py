@@ -8,7 +8,12 @@ from lettings.tests.tests_data import create_fake_address
 def test_lettings_index_view(client):
     """
     Test the lettings index view.
-    :param client: The test client.
+
+    Args:
+        client (django.test.Client)
+
+    Returns:
+        None
     """
     # Create a sample letting
     # create a fake address
@@ -33,7 +38,12 @@ def test_lettings_index_view(client):
 def test_letting_detail_view(client):
     """
     Test the letting detail view.
-    :param client: The test client.
+
+    Args:
+        client: The test client.
+
+    Returns:
+        None
     """
     # create a fake address
     fake_address = Address.objects.create(

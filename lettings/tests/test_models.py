@@ -7,7 +7,13 @@ from lettings.tests.tests_data import create_fake_address
 def test_letting_str():
     """
     Test the __str__ method of the Letting model.
-    :return:
+
+    Args:
+        None
+
+    Returns:
+        None
+
     """
     # create fake address
     fake_address = create_fake_address()
@@ -28,7 +34,12 @@ def test_letting_str():
 def test_letting_address():
     """
     Test the address of the Letting model.
-    :return:
+
+    Args:
+        None
+
+    Returns:
+        None
     """
 
     # create fake address
