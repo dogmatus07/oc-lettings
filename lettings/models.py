@@ -30,6 +30,12 @@ class Address(models.Model):
         """
         return f'{self.number} {self.street}'
 
+    class Meta:
+        """
+        Meta class for Address model to define ordering.
+        """
+        verbose_name = 'Address'
+        verbose_name_plural = 'Addresses'
 
 class Letting(models.Model):
     """
